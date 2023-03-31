@@ -1,0 +1,50 @@
+#include <IRremote.h> //  Biblioteca para acesso ao sensor IR
+
+#define pinoIR    2 // Pino digital para receber sinal do sensor IR
+
+IRrecv receptor(pinoIR);   //  Cria um receptor que decodifica o sinal do sensor IR - codigos do controle remoto
+decode_results resultados; //  Variavel que aramzenara os resultados recebidos
+int rele = 13; // Define a porta Digital 9 como rele.
+int rele1 = 11; // Define a porta Digital 8 como rele1.
+int rele2 = 8; // Define a porta Digital 7 como rele2.
+
+void setup() {
+  pinMode(rele, OUTPUT); // Declara rele como um pino de saida.
+  pinMode(rele1, OUTPUT); // Declara rele1 como um pino de saida.
+  pinMode(rele2, OUTPUT); // Declara rele2 como um pino de saida.
+  Serial.begin(9600);
+  receptor.enableIRIn();    //  Habilita o receptor para inicio de processamento dos codigos recebidos do emissor IR
+
+}
+
+void loop() {
+  if (receptor.decode(&resultados)) {       //  Decodifica o codigo da informacao enviada pelo emissor IR
+    Serial.println(resultados.value, HEX);  //  Mostra o valor em HEX do resultado recebido
+    receptor.resume();                      //  Continua a aguardar o envio de informacoes peso emissor IR
+
+
+    if (resultados.value == 0xFD08F7) { // Se identificada caractere '1'.
+      digitalWrite(rele, HIGH); // DESLIGA rele.
+    }
+   
+    if (resultados.value == 0xFD28D7) { // Se identificada caractere '4'.
+      digitalWrite(rele, LOW); // Desliga rele.
+    }
+    if (resultados.value == 0xFD8877) { // Se identificada caractere '2'.
+      digitalWrite(rele1, HIGH); // Liga rele1.
+    }
+    if (resultados.value == 0xFDA857) { // Se identificada caractere '5'.
+      digitalWrite(rele1, LOW); // Desliga rele1.
+    }
+    if (resultados.value == 0xFD48B7) { // Se identificada caractere '3'.
+      digitalWrite(rele2, HIGH); // Liga rele2.
+    }
+    if (resultados.value == 0xFD6897) { // Se identificada caractere '6'.
+      digitalWrite(rele2, LOW); // Desliga rele2.
+    }
+  if (resultados.value == 0xFD00FF) { // Se identificada caractere '6'.
+      digitalWrite(rele, LOW); // Desliga rele2.
+        digitalWrite(rele1, LOW); // Desliga rele2.
+        digitalWrite(rele2, LOW); // Desliga rele2.
+  }
+  }}

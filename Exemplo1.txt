@@ -1,0 +1,28 @@
+/*
+  Pisca pisca
+  Acende o led durante um segundo, apaga por outro segundo, e repete o ciclo
+  
+  Este exemplo esta em domínio público.
+ */
+  
+// No Arduino UNO, o pin 13 tem um led já ligado na  placa.
+  
+int led = 13;   //O led esta no pino D13. Chamaremos este pino de "led"
+ 
+// O setup corresponde a todas ações que são realizadas apenas uma vez
+ 
+void setup()
+    {               
+    // Configura o pino digital D13 (led) como saída.
+    pinMode(led, OUTPUT);    
+    }
+ 
+// O código que estiver dentro da função "loop" fica constantemente sendo executado
+ 
+void loop()
+    {
+    digitalWrite(led, HIGH);   // liga o led
+    delay(1000);               // espera por um segundo
+    digitalWrite(led, LOW);    // desliga o led
+    delay(1000);               // espera por um segundo
+    }

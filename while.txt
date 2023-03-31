@@ -1,0 +1,19 @@
+  int var = 0;
+
+void setup()
+{
+  Serial.begin(9600); // abre a porta serial a 9600 bps:
+}
+
+void loop()
+{ 
+while(var < 200){   // faça alguma coisa repetitiva por 200 vezes
+  var++;
+  Serial.print("Valor de var  ="); // imprime um rótulo
+  Serial.print("\t"); // imprime uma tabulação (TAB)
+  Serial.print(var);
+  Serial.print("\t"); 
+  Serial.println();         // imprime outra linha
+  
+   }
+}

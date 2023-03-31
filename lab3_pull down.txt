@@ -1,0 +1,27 @@
+/*******************************************************************************
+*
+*      Push button apaga led quando pressionado (pull down)
+*                   
+*
+*******************************************************************************/
+
+const int ledPin = 2; //led no pino 2
+const int Botao = 12; //botao no pino 12
+int estado; //Variavel para ler o status do pushbutton
+
+void setup(){
+    pinMode(ledPin, OUTPUT); //Pino do led será saída
+    pinMode(Botao, INPUT); //Pino com botão será entrada
+}
+
+void loop(){
+    estado = digitalRead(Botao); //le o estado do botão - HIGH (1) OU LOW (0)
+    
+  
+    if (!estado){ // Verdadeiro se estado = 0 (LOW)  
+        digitalWrite(ledPin, HIGH); // acende  led do pino 2.
+    }
+    else{ // verdadeiro se o estado = 1 (HIGH)
+        digitalWrite(ledPin, LOW); //deixa o led do pino 2 apagado
+    }
+}

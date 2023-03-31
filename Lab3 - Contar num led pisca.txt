@@ -1,0 +1,37 @@
+const int led = 2; //PINO DIGITAL LED
+int i;  // Variável para contar o número de vezes que o LED piscou
+  
+void setup() {
+
+pinMode(led, OUTPUT); //DEFINE O PINO COMO SAÍDA
+digitalWrite(led, LOW); //LED INICIA DESLIGADO
+Serial.begin(9600); // abre a porta serial a 9600 bps:
+}
+
+void loop(){
+ 
+  
+  // Pisca o LED três vezes
+  for(i = 0; i < 3; i++) {
+  
+  Serial.print("Valor de i  ="); // imprime um rótulo
+  Serial.print("\t"); // imprime uma tabulação (TAB)
+  Serial.print(i);
+  Serial.print("\t");
+    
+    if(i == 2) {
+      digitalWrite(led, HIGH); // Atribui nível lógico alto ao pino do LED, acendendo-o
+      delay(4500);              // Espera 200 milissegundos (um segundo)
+      digitalWrite(led, LOW);  // Atribui nível lógico baixo ao pino do LED, apagando-o
+      delay(1800);             // Espera 1800 milissegundos (um segundo)
+    } else {
+      digitalWrite(led, HIGH); // Atribui nível lógico alto ao pino do LED, acendendo-o
+      delay(1000);             // Espera 1000 milissegundos (um segundo)
+      digitalWrite(led, LOW);  // Atribui nível lógico baixo ao pino do LED, apagando-o
+      delay(500);             // Espera 1000 milissegundos (um segundo)
+    }
+  }
+  
+  delay(7000);               // Espera 5 segundos para piscar o LED de novo
+Serial.println();         // imprime outro retorno
+}

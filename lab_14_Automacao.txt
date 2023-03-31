@@ -1,0 +1,45 @@
+#include <SoftwareSerial.h>
+ 
+SoftwareSerial mySerial(0, 1); // 0-RX, 1-TX
+ 
+int rele = 9; // Define a porta Digital 9 como rele.
+int rele1 = 8; // Define a porta Digital 8 como rele1.
+int rele2 = 7; // Define a porta Digital 7 como rele2.
+int rele3 = 6; // Define a porta Digital 6 como rele3.
+ 
+void setup() {
+ mySerial.begin(9600); // Define a comunicação serial em 9600.
+ pinMode(rele, OUTPUT); // Declara rele como um pino de saida.
+ pinMode(rele1, OUTPUT); // Declara rele1 como um pino de saida.
+ pinMode(rele2, OUTPUT); // Declara rele2 como um pino de saida.
+ pinMode(rele3, OUTPUT); // Declara rele3 como um pino de saida.
+}
+ 
+void loop() {
+ char caracter = mySerial.read(); // Faz a leitura da caractere
+ 
+ if (caracter == 'A') { // Se identificada caractere 'A'.
+ digitalWrite(rele, HIGH); // Liga rele.
+ }
+ if (caracter == 'a') { // Se identificada caractere 'a'.
+ digitalWrite(rele, LOW); // Desliga rele.
+ }
+ if (caracter == 'B') { // Se identificada caractere 'B'.
+ digitalWrite(rele1, HIGH); // Liga rele1.
+ }
+ if (caracter == 'b') { // Se identificada caractere 'b'.
+ digitalWrite(rele1, LOW); // Desliga rele1.
+ }
+ if (caracter == 'C') { // Se identificada caractere 'C'.
+ digitalWrite(rele2, HIGH); // Liga rele2.
+ }
+ if (caracter == 'c') { // Se identificada caractere 'c'.
+ digitalWrite(rele2, LOW); // Desliga rele2.
+ }
+ if (caracter == 'D') { // Se identificada caractere 'D'.
+ digitalWrite(rele3, HIGH); // Liga rele3.
+ }
+ if (caracter == 'd') { // Se identificada caractere 'd'.
+ digitalWrite(rele3, LOW); // Desliga rele3.
+ }
+}

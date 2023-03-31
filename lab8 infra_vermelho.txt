@@ -1,0 +1,22 @@
+
+#include <IRremote.h> //  Biblioteca para acesso ao sensor IR
+
+#define pinoIR    2 // Pino digital para receber sinal do sensor IR
+
+IRrecv receptor(pinoIR);   //  Cria um receptor que decodifica o sinal do sensor IR - codigos do controle remoto
+decode_results resultados; //  Variavel que aramzenara os resultados recebidos
+
+
+void setup() {
+ 
+  Serial.begin(9600);
+  receptor.enableIRIn();    //  Habilita o receptor para inicio de processamento dos codigos recebidos do emissor IR
+
+}
+
+void loop() {
+  if (receptor.decode(&resultados)) {       //  Decodifica o codigo da informacao enviada pelo emissor IR
+    Serial.println(resultados.value, HEX);  //  Mostra o valor em HEX do resultado recebido
+    receptor.resume();                      //  Continua a aguardar o envio de informacoes peso emissor IR
+     }
+}

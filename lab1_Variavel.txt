@@ -1,0 +1,15 @@
+
+//Esse código cria uma variável do tipo integer chamada 'contador', a qual é inicialmente atribuído o //valor 0 (zero).
+//A váriavel incrementa em 1 (um) a cada execução do loop e é mostrada no monitor serial.
+
+int contador = 0;          //cria uma variável integer chamada 'contador'
+
+void setup() {
+  Serial.begin(9600);      // usa a porta serial para imprimir o número
+}
+
+void loop() {
+  contador++;               // soma 1 ao int contador a cada execução do loop
+  Serial.println(contador); // Imprime o estado atual do contador
+  delay(1000);
+}
